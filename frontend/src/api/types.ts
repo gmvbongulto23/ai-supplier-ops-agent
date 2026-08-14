@@ -37,6 +37,14 @@ export interface Recommendation {
   accepted_at: string | null
 }
 
+export interface Supplier {
+  id: string
+  name: string
+  products_supplied: string[]
+  reliability_status: 'reliable' | 'inconsistent'
+  contact_info: string
+}
+
 export interface DashboardResponse {
   delivery_summary: Record<string, number>
   inventory: InventoryView[]
