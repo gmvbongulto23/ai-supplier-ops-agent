@@ -99,3 +99,143 @@ body {
 .dashboard-summary dd {
   margin: 0;
 }
+
+.ops-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 960px;
+}
+
+.ops-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.scenario-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.scenario-buttons button {
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #3336;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.scenario-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.badge-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #3333;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #3333;
+}
+
+.status-pill,
+.severity-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  text-transform: capitalize;
+  border: 1px solid currentColor;
+}
+
+.status-healthy,
+.status-on_time,
+.status-delivered {
+  color: #1b7a3c;
+}
+
+.status-at_risk,
+.status-delayed,
+.severity-high {
+  color: #b9770e;
+}
+
+.status-critical,
+.severity-critical {
+  color: #b3261e;
+}
+
+.recommendation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recommendation {
+  border: 1px solid #3333;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+}
+
+.recommendation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.recommendation-reason {
+  margin: 0 0 0.6rem;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+.recommendation button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #1b7a3c;
+  color: #1b7a3c;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.recommendation button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.accepted-log {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.accepted-log h3 {
+  font-size: 0.85rem;
+  margin: 0 0 0.3rem;
+}

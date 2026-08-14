@@ -13,14 +13,14 @@ function getBaseUrl(): string {
   return baseUrl
 }
 
-export async function apiGet<T>(path: string, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+async function apiFetch<T>(path: string, init: RequestInit, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
   const baseUrl = getBaseUrl()
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
 
   let response: Response
   try {
-    response = await fetch(`${baseUrl}${path}`, { signal: controller.signal })
+    response = await fetch(`${baseUrl}${path}`, { ...init, signal: controller.signal })
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') {
       throw new ApiError(`Request to ${path} timed out after ${timeoutMs}ms`, 'timeout')
@@ -39,6 +39,22 @@ export async function apiGet<T>(path: string, timeoutMs: number = DEFAULT_TIMEOU
   } catch {
     throw new ApiError(`Response from ${path} was not valid JSON`, 'parse')
   }
+}
+
+export function apiGet<T>(path: string, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+  return apiFetch<T>(path, {}, timeoutMs)
+}
+
+export function apiPost<T>(path: string, body?: unknown, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+  return apiFetch<T>(
+    path,
+    {
+      method: 'POST',
+      headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    },
+    timeoutMs,
+  )
 }
 
 export function getHealth(): Promise<HealthResponse> {

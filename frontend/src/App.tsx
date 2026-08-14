@@ -1,10 +1,10 @@
 import { Layout } from './components/Layout'
-import { DashboardHome } from './pages/DashboardHome'
+import { OpsDashboard } from './pages/OpsDashboard'
 
 function App() {
   return (
     <Layout>
-      <DashboardHome />
+      <OpsDashboard />
     </Layout>
   )
 }

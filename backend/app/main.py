@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import get_api_router
 from app.core.config import get_settings
+from app.ops import store
 
 
 def create_app() -> FastAPI:
@@ -11,10 +12,11 @@ def create_app() -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_allow_origins,
-        allow_methods=["GET"],
+        allow_methods=["GET", "POST"],
         allow_headers=["*"],
     )
     app.include_router(get_api_router())
+    store.seed_baseline()
     return app
 
 
