@@ -19,7 +19,7 @@ describe('Layout', () => {
   it('renders the app heading and children', () => {
     renderLayout()
 
-    expect(screen.getByRole('heading', { name: 'Supply Chain Ops' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'SAHARA' })).toBeInTheDocument()
     expect(screen.getByText('content')).toBeInTheDocument()
   })
 

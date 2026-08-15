@@ -35,7 +35,10 @@ export function Layout() {
           <span className="app-header-icon">
             <CartIcon />
           </span>
-          <h1>Supply Chain Ops</h1>
+          <span className="app-header-text">
+            <h1>SAHARA</h1>
+            <span className="app-header-subtitle">Supply Access Hub</span>
+          </span>
         </NavLink>
       </header>
       <div className="app-body">

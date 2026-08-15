@@ -1,32 +1,44 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + TypeScript + Vite dashboard for the supply-chain ops demo.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+cp .env.example .env   # set VITE_API_BASE_URL to point at the backend
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Requires the backend running (see [../backend/README.md](../backend/README.md))
+— the dashboard has nothing to show without it.
+
+## Routes
+
+| Path | Shows |
+|---|---|
+| `/` | Overview: scenario runner, delivery summary, inventory, orders, recommendations |
+| `/suppliers` | Supplier list (name, products, reliability, contact) |
+| `/orders` | Orders table |
+| `/deliveries` | Orders with delivery-focused columns (ETA, delay info) |
+| `/inventory` | Inventory status table |
+| `/risks` | At-risk/critical inventory + open recommendations |
+| `/recommendations` | Full AI Operations Center (accept recommendations, accepted log) |
+
+## Scripts
+
+```bash
+npm run dev       # dev server
+npm run build     # typecheck + production build
+npm run test      # vitest
+npm run lint      # oxlint
+npm run preview   # preview a production build
+```
+
+## Notes
+
+- API calls go through `src/api/client.ts`, which requires `VITE_API_BASE_URL`
+  to be set (build fails fast otherwise — see `apiClient.test.ts`).
+- When built into the [root Dockerfile](../Dockerfile), the frontend is served
+  as static files from the FastAPI backend on the same origin/port, so no
+  `VITE_API_BASE_URL` configuration is needed at deploy time.

@@ -87,11 +87,26 @@ h3 {
   flex-shrink: 0;
 }
 
+.app-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
 .app-header h1 {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 700;
+  letter-spacing: 0.03em;
   color: var(--color-ink);
+}
+
+.app-header-subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 .app-body {
